@@ -1,0 +1,33 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class LongestSubstring {
+public static int length(String s)
+{
+	int MaxCount=0;
+	int i=0;
+	int j=0;
+	int strlen = s.length();
+	
+	Set<Character>st = new HashSet<>();
+	while (i<strlen && j<strlen)
+	{
+		if(!st.contains(s.charAt(j))) {
+			st.add(s.charAt(j));
+			j++;
+			MaxCount= Math.max(MaxCount,j-1);
+		}else {
+			st.remove(s.charAt(i));
+			i++;
+		}
+	}
+	return MaxCount;
+}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String str = "abcbbcc";
+		int len= length(str);
+		System.out.println("Length of the substring is:" +len);
+	}
+
+}
