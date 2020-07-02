@@ -1,0 +1,23 @@
+public class StaticExample {
+	//static variables
+	static int num;						
+	static String val;					
+	
+	//static block
+	static {							
+		num=14;
+		val="Mit";
+	}
+	
+	//static method
+	static void result() {				
+		System.out.println("Number is:"+num);
+		System.out.println("Name is:"+val);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		result();
+	}
+
+}
