@@ -1,0 +1,49 @@
+public class Palindromic {
+	    static void printSubString(String str, int i, int j) 
+	    { 
+	        System.out.println( 
+	            str.substring(i, j + 1)); 
+	    } 
+	  	    static int longestPalandromicSubstring(String str) 
+	    { 
+	        int maxLength = 1; 
+	        int start = 0; 
+	        int len = str.length(); 
+	        int i, j; 
+	        for (int m = 1; m < len; ++m) { 
+	            i = m - 1; 
+	            j = m; 
+	            while (i >= 0 && j < len 
+	                   && str.charAt(i) 
+	                          == str.charAt(j)) { 
+	                if (j - i + 1 > maxLength) { 
+	                    start = i; 
+	                    maxLength = j - i + 1; 
+	                } 
+	                --i; 
+	                ++j; 
+	            } 
+	            i = m - 1; 
+	            j = m + 1; 
+	            while (i >= 0 && j < len 
+	                   && str.charAt(i) 
+	                          == str.charAt(j)) { 
+	                if (j - i + 1 > maxLength) { 
+	                    start = i; 
+	                    maxLength = j - i + 1; 
+	                } 
+	                --i; 
+	                ++j; 
+	            } 
+	        } 
+          System.out.print("Longest palindrome substring is: "); 
+	        printSubString(str, start, start + maxLength - 1);  
+          return maxLength; 
+	    } 
+	    public static void main(String[] args) 
+	    { 
+	  
+	        String str = "abcbab"; 
+	        System.out.println("Length is: " + longestPalandromicSubstring(str)); 
+	    } 
+	} 
