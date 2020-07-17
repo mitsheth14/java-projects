@@ -1,0 +1,39 @@
+package training;
+
+import java.io.*;
+
+public class MultipleTryResource {
+	public static void main(String args[])
+	{
+		try
+		(
+			//try-with-resources
+			//multipleresources
+			FileOutputStream fos=new FileOutputStream("/D:\\files/multiple try resources.txt");
+			InputStream is=new FileInputStream("/D:\\files/multiple try resources.txt")){
+				//coding into the file
+				String txt = "This is the program of multiple resources in try block using try-with-resources";
+				//converting string into bytearray
+				byte byteArray[] = txt.getBytes();
+				//writing data in file
+				fos.write(byteArray);
+				//System.out.println(txt); If we want to see the what data is writeen then only execute this code
+				//Now we have to read data from the file
+				DataInputStream dis=new DataInputStream(is);
+				int data = is.available();
+				byte[] bytearraysecond = new byte[data];
+				// the upper code represent returns the number of bytes which are read from inputstream
+				dis.read(bytearraysecond);
+				//now again converting byte array into string
+				String txtsecond = new String(bytearraysecond);
+				System.out.println("Reading data from file");
+				System.out.println(txtsecond);//display the data
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
+			finally {
+				System.out.println("Hence mulitple try using try-with resources executed succesfully");
+			}
+		}
+	}
