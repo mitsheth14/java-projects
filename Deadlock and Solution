@@ -1,0 +1,63 @@
+package training;
+
+public class thread {
+		public static Object Lock1 = new Object(); 
+		public static Object Lock2 = new Object();
+	   
+	   public static void main(String args[]) {
+	      thread1 T1 = new thread1();
+	      thread2 T2 = new thread2();
+	      T1.start(); //starting the thread 1
+	      T2.start(); // starting the thread 2
+	   }
+	   
+	   private static class thread1 extends Thread {
+	      public void run() {          //running the thread 1 
+	    	  synchronized (Lock1) { 
+	        	 //this synchronized will cause the executing thread to block while waiting for lock
+	            System.out.println("Thread 1 is holding the lock 1");
+	            
+	            try { Thread.sleep(100); }
+	            catch (InterruptedException msg) {}
+	            System.out.println("Thread 1 is waiting for lock 2");
+	            
+	            synchronized (Lock2) {
+	               System.out.println("Thread 1 holds both the locks i.e. lock 1 and lock 2");
+	            }
+	         }
+	      }
+	   }
+	   private static class thread2 extends Thread {
+	      public void run() {
+	    	  /* If we run the following code deadlock will occur because the synchronized keyword is holding
+	    	  lock2 first rather than lock1 
+	         synchronized (Lock2) {
+	            System.out.println("Thread 2 is holding the lock 2");
+	            
+	            try { Thread.sleep(100); }
+	            catch (InterruptedException msg) {}
+	            System.out.println("Thread 2 is waiting for the lock 1");
+	            
+	            synchronized (Lock1) {
+	               System.out.println("Thread 2 is holding both the locks i.e. lock 1 and lock 2");
+	           
+	            }
+	         }*/
+	         /*The following code is the solution for the deadlock because now synchronized keyword is 
+	         holding lock 1 and then lock2*/
+	         
+	         synchronized (Lock1) {
+		            System.out.println("Thread 2 is holding the lock 2");
+		            
+		            try { Thread.sleep(100); }
+		            catch (InterruptedException msg) {}
+		            System.out.println("Thread 2 is waiting for the lock 1");
+		            
+		            synchronized (Lock2) {
+		               System.out.println("Thread 2 is holding both the locks i.e. lock 1 and lock 2");
+		           
+		            }
+		         }
+	      }
+	   } 
+	}
