@@ -1,0 +1,28 @@
+package training;
+
+import java.io.File;
+
+public class ListofFiles {
+	
+	public static void main(String[]args) {
+		
+		// giving the path of directory which contains the files and folders
+		
+		File f = new File("C:\\Users\\mitsh\\OneDrive\\Desktop\\Android Course");
+		
+		/* As we just want to list the names of all files and folders
+		I am using string[]list() because it will return array of Strings containing the names of
+		all files and folders in directory*/
+		
+		String[] names = f.list();
+		
+		System.out.println("The directory has following files and folders:");
+		
+		for (String listofallfilesandfolders:names)
+		{
+			System.out.println(listofallfilesandfolders);
+		}
+	}
+	
+
+}
