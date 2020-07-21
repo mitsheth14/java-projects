@@ -1,0 +1,45 @@
+package training;
+
+public class BuiltinWrapper {
+	public static void main(String args[])
+	{
+		Integer i1 = new Integer(10);
+		Integer i2 = new Integer(15);
+		//Now lets use "compare to" for comparing both the objects
+		Integer c = i1.compareTo(i2);//It will compare both the object
+		System.out.println("After comparing two objects the final value:"+c);
+		//Now let's use double
+		Double d1 = new Double(15.0);
+		Double d2 = new Double(15.0);
+		Double d3 = new Double(17.0);
+		//Now lets use "equal to" for checking the value is equal or not
+		boolean e= d1.equals(d2);
+		System.out.println("Is value 1 and value 2 equal?"+e);
+		boolean e1= d1.equals(d3);
+		System.out.println("Is value 1 and value 3 equal?" +e1);
+		boolean e2= d2.equals(d3);
+		System.out.println("Is value 2 and value 3 equal?" +e2);
+		// Now let's create with float
+		Float f1 = new Float("10.25f");
+		Float f2 = new Float("39.56f");
+		//Now first we will add two float
+		Float f3 = f1 + f2;
+		System.out.println("Addition of two float is: " +f3);
+		//Now lets add int with float
+		Float f4 = i1.floatValue() + i2.floatValue() + f1 + f2;
+		System.out.println("Addition of int with float is:" +f4);
+		//Now lets add double with float
+		Float f5 = d1.floatValue()+d2.floatValue()+d3.floatValue()+f1+f2;
+		System.out.println("Addtion of double with float is" + f5);
+		// Now lets add all the three data types into each 
+		//let's add all the datatypes into int
+		Integer i3 = i1+i2+d1.intValue()+d2.intValue()+d3.intValue()+f1.intValue()+f2.intValue();
+		System.out.println("Addition in int is :" +i3);
+		//lets add all the datatypes in double
+		Double d4 = i1.doubleValue()+i2.doubleValue()+d1+d2+d3+f1.doubleValue()+f2.doubleValue();
+		System.out.println("Addition in double is:" +d4);
+		//lets add all the datatypes into float
+		Float f6 = i1.floatValue()+i2.floatValue()+d1.floatValue()+d2.floatValue()+d3.floatValue()+f1+f2;
+		System.out.println("Addition in float is" +f6);	
+	}
+}
