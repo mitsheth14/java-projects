@@ -1,0 +1,47 @@
+// First of all I have created my own custom exception class 
+public class ProductNotFoundException extends Exception {
+	 
+    public ProductNotFoundException(String message) {
+        super(message);
+    }
+}
+
+// I have created one department class which stores the information about the departments
+public class Department {
+int DepartmentID = 1235857;
+{
+System.out.println("Student Id:" +DepartmentID);
+}
+}
+
+// Now I have created another class named Store Manager for searching the product of the department hence we can see that a custom exception used is nothing different than built-in exception:
+public class StoreManager {
+	 
+    public Department find(String DepartmentID) throws ProductNotFoundException {
+        if (DepartmentID.equals("1236463")) {
+            return new Department();
+        } else {
+            throw new ProductNotFoundException(
+                "Could not find product having DepartmentID " + DepartmentID);
+        }
+    }
+}
+
+// Now I have written the code which handles the exception
+import java.lang.*;
+
+public class DepartmentStore {
+    public static void main(String[] args) {
+        StoreManager manager = new StoreManager();
+ 
+        try {
+ 
+            Department DepartmentID = manager.find("1248759");
+ 
+        } 
+        catch (ProductNotFoundException ex) {
+            System.err.print(ex);
+        }
+    }
+}
+
