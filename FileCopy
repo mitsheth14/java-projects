@@ -1,0 +1,45 @@
+package training;
+
+import java.io.*;
+class FileDemo {
+    public static void main(String args[]) {
+        FileReader fr = null; //for reading the character in file
+        FileWriter fw = null; // for writing
+        try
+        {
+        	fr = new FileReader("original file.txt");
+        	fw = new FileWriter("Destination File.txt");
+        	int f = fr.read(); // reading the original file
+        	while (f!=-1)
+        	{
+        		fw.write(f); // it will write into to another file
+        		f=fr.read(); // it will read the data of the new file
+        		
+        	}
+        }
+        catch (IOException i) {
+        	i.printStackTrace();
+        }
+        finally
+        {
+        	close(fr);
+        	close(fw);
+        }
+    }
+    
+    public static void close(Closeable S) // for closing the fr fw and to chech wether the source file is empty or not
+    {
+    	try
+    	{
+    		if (S != null)
+    		{
+    			S.close();
+    		}
+    	}
+    	catch (IOException i)
+    	{
+    		i.printStackTrace();
+    	}
+    }
+}
+
