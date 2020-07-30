@@ -1,0 +1,23 @@
+package training;
+import java.io.File;
+
+public class Deletefile {
+	
+	public static void main(String[]args) {
+		
+		// giving the path of directory which contains the files and folders
+		
+		File f = new File("C:\\Users\\mitsh\\OneDrive\\Desktop\\Android Course");
+		
+		// Deleting the file from the folder which are starting with S or s. 
+     
+		for (File files : f.listFiles())
+		{
+			if (f.getName().startsWith("S") || f.getName().startsWith("s"))
+				f.delete();
+			System.out.println("Files starting with '/S' or '/s' are deleted");
+		}
+		
+	}
+
+}
