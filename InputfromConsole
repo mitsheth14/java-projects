@@ -1,0 +1,76 @@
+package training;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class InputfromConsole {
+
+	public static void main(String[] args) throws SQLException {
+
+		String url = "jdbc:mysql://localhost:3306/Store";
+		String user = "root";
+		String password = "none";
+
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+
+		Scanner scanner = null;
+
+		try {
+			// Here it is asked to read user input from command line for the columns of the product tables 
+			//i.e name,department,stock,price
+			scanner = new Scanner(System.in);
+
+			System.out.print("Enter name of Product: ");
+			String name = scanner.nextLine();
+
+			System.out.print("Enter department of the product ");
+			String department = scanner.nextLine();
+
+			System.out.print("Enter the quantity:");
+			int Stock = scanner.nextInt();
+			
+
+			System.out.print("Enter the price:");
+			double price = scanner.nextDouble();
+
+			// As we have asked for all the details now we will establish the connection with database
+			myConn = DriverManager.getConnection(url, user, password);
+
+			// 2. Creating a statement for updating the values into the table
+			String sql = "insert into Product "
+					+ " (name,department,Stock,price)" + " values (?, ?, ?,?)";
+
+			myStmt = myConn.prepareStatement(sql);
+
+			// set param values
+			myStmt.setString(1, name);
+			myStmt.setString(2, department);
+			myStmt.setInt(3, Stock);
+			myStmt.setDouble(4, price);
+
+			// 3. So, now we will execute the query
+			myStmt.executeUpdate();
+
+			System.out.println("Insert complete.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (myStmt != null) {
+				myStmt.close();
+			}
+
+			if (myConn != null) {
+				myConn.close();
+			}
+
+			if (scanner != null) {
+				scanner.close();
+			}
+		}
+	}
+
+}
