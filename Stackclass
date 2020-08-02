@@ -1,0 +1,30 @@
+package training;
+import java.util.Stack;
+
+public class StackOperation {
+    public static void main(String[] args) {
+        Stack<String> Players = new Stack<>(); // Created a stack
+        //method signature of push. Hence we have push element into the stack
+        Players.push("Dhoni");
+        Players.push("Kohli");
+        Players.push("Ronaldo");
+        Players.push("Messi");
+        Players.push("Jordan");
+
+        System.out.println("Stack : " + Players);
+
+        //Now I am just checking by the method signature isEmpty that is stack empty or not?
+        System.out.println("Is Stack empty or not? : " + Players.isEmpty());
+
+        // Printing the size of Stack
+        System.out.println("If Stack is not emplty than what is the size of Stack : " + Players.size());
+        
+        //Now I will pop the element from the stack using method signature of pop
+        //As stack works on Last In First Out so last element inserted will popout first
+        String cardAtTop = Players.pop();  // Throws EmptyStackException if the stack is empty
+        System.out.println("Stack.pop() => " + cardAtTop);
+        System.out.println("Current Stack => " + Players);
+        System.out.println();
+    }
+}
+
