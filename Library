@@ -1,0 +1,52 @@
+// Non-Generic Version
+package training;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Library {
+    private List<Media> resources = new ArrayList<Media>();
+    public void addMedia(Media x) {
+        resources.add(x);
+    }
+    public Media retrieveLast() {
+        int size = resources.size();
+        if (size > 0) {
+            return (Media)resources.get(size - 1);
+        }
+        return null;
+    }
+}
+
+interface Media {
+}
+
+interface Book extends Media {
+}
+
+interface Video extends Media {
+}
+
+interface Newspaper extends Media {
+} 
+
+
+// Generic Version
+
+package training;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class Lib<E extends Media> {
+    private List<E> resources = new ArrayList<E>();
+    public void addMedia(E x) {
+        resources.add(x);
+    }
+    public E retrieveLast() {
+        int size = resources.size();
+        if (size > 0) {
+            return resources.get(size - 1);
+        }
+        return null;
+    }
+}
