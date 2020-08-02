@@ -1,0 +1,53 @@
+package training;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+public class MultipleRecord {
+
+private static Date someDate;
+
+public static void main(String args[]) throws SQLException {
+	   try 
+	   {
+		   Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Store","root","none");
+			Statement stmt = conn.createStatement();
+			// Now we will write query to fetch the records using join query from multi-tables in java
+			String Query = "SELECT Name,Quantity,date from Supply inner join Product on  Supply.Name=Product.Product_name ";
+			ResultSet rs = stmt.executeQuery(Query);
+		      System.out.println("Name Quantity Date");
+		      while (rs.next()) {
+		         String Name = rs.getString("Name");
+		         String quantity = rs.getString("Quantity");
+		         Date dt = new Date();
+		         String pattern = "yyyy-MM-dd";
+		         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+		         String mysqlDateString = formatter.format(dt);
+		         System.out.println(Name +"   "+quantity+"  "+dt);
+		         //Now we will update the date in one of the table using date function 
+		         // First of all we will convert from String to Date
+		         String requestDateAsString = "02-Aug-2020";
+		         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+		         Date requestDate = sdf.parse(requestDateAsString);
+		         // and again Convert from Date to String.
+		         String anotherDateAsString = sdf.format(someDate);
+		      }
+		      System.out.println();
+		      System.out.println();
+	   }	
+		catch(Exception e)
+		{ 
+			System.out.println(e);
+			} 
+	}
+}
+
+	   
