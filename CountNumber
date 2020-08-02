@@ -1,0 +1,94 @@
+/* first of all to count the number of element in collection that have specific property 
+I will create interface named  Special Number first because we can implement interface in our customized classes So I have created SpecialNumber.java */
+/*package training;
+public interface SpecialNumber<M> {
+public boolean match(M m);
+}*/
+
+//Now after that I have created three implementation class 1)Prime number 2)Even number 3)Odd Number
+//1 class PrimeNumber.java
+/*
+package training;
+
+public class PrimeNumber implements SpecialNumber<Integer> {
+
+@Override
+public boolean match(Integer m) {
+for (int i = 2; i < m; ++i) {
+if (m % i == 0) {
+return false;
+}
+}
+return true;
+}
+}*/
+
+//2 class EvenNumber.java
+/*
+package training;
+
+public class EvenNumber implements SpecialNumber<Integer> {
+
+@Override
+public boolean match(Integer m) {
+return (m % 2 == 0);
+}
+}*/
+
+//3 class OddNumber.java
+
+/*
+package training;
+
+public class OddNumber implements SpecialNumber<Integer> {
+
+@Override
+public boolean match(Integer m) {
+return (m % 2 != 0);
+}
+}*/
+
+/*After creating three implementation class I have created class name Count to perform the Countbased on the supplied class as parameter*/
+
+package training;
+
+import java.util.List;
+
+public class Count {
+
+public <M> int count(List<M> list, SpecialNumber<M> s) {
+int c = 0;
+for (M type : list) {
+if (s.match(type)) {
+++c;
+}
+}
+return c;
+}
+}
+
+//Now I will write CountNumber class for performing the task i.e to display the count of number of elements
+package training;
+
+import java.util.*;
+
+public class CountNumber {
+	public static void main(String[] args) {
+		CountNumber cn  = new CountNumber();
+		cn.testSpecificElement();
+		}
+
+		public void testSpecificElement() {
+		List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13);
+		PrimeNumber pn = new PrimeNumber();
+		EvenNumber en = new EvenNumber();
+		OddNumber on = new OddNumber();
+		Count c = new Count();
+		System.out.println(" Count of prime numbers are: " + c.count(list,pn));
+		System.out.println("Count of even numbers are: " + c.count(list, en));
+		System.out.println("Count of odd numbers are:" +c.count(list, on));
+		}
+
+		}
+
+
